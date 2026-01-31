@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>onKeyDown / onKeyUp</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            background-color: #e7dddf;
+            padding: 50px;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+            border-radius: 20%;
+            margin: 20px auto;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+
+        .output {
+            font-size: 20px;
+            margin-top: 20px;
+            color: #333;
+        }
+
+        .key {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>onKeyDown and onKeyUp</h1>
+    <p><i>Press arrow keys to move the box and change its color.</i></p>
+
+    <div class="box" id="box"></div>
+    <div class="output" id="output">Press a key to get started...</div>
+
+    <script>
+        const box = document.getElementById("box");
+        const outputDiv = document.getElementById("output");
+
+        let x = 0;
+        let y = 0;
+
+        function changeColor() {
+            const randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
+            box.style.backgroundColor = randomColor;
+        }
+
+        // Handle key down
+        document.addEventListener("keydown", (event) => {
+            const key = event.key;
+
+            if (key === "ArrowUp") {
+                y -= 10;
+            } else if (key === "ArrowDown") {
+                y += 10;
+            } else if (key === "ArrowLeft") {
+                x -= 10;
+            } else if (key === "ArrowRight") {
+                x += 10;
+            }
+
+            changeColor();
+            box.style.transform = `translate(${x}px, ${y}px)`;
+
+            outputDiv.innerHTML = `Key pressed: <span class="key">${key}</span>`;
+            outputDiv.style.color = "green";
+        });
+
+        // Handle key up
+        document.addEventListener("keyup", (event) => {
+            const key = event.key;
+
+            outputDiv.innerHTML = `Key released: <span class="key">${key}</span>`;
+            outputDiv.style.color = "red";
+        });
+    </script>
+
+</body>
+</html>
