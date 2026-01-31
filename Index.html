@@ -1,76 +1,76 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>onKeyDown/onKeyUp</title>
-    <style>
-        body {
-            font-family: Arial;
-            text-align: center;
-            background-color: #e7dddf;
-            padding: 50px;
-        }
+  <title>OnkeyDown/Upkey</title>
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      background-color: #e7dddf;
+      padding: 50px; }
 
-        .box {
-            width: 100px;
-            height: 100px;
-            border-radius: 20%;
-            background-color: blue;
-            margin: 20px auto;
-            transition: transform 0.2s ease, background-color 0.2s ease;
-        }
-
-        .output {
-            font-size: 20px;
-            margin-top: 20px;
-            color: #333;
-        }
-    </style>
+    .box {
+      width: 100px;
+      height: 100px;
+      border-radius: 20%;
+      background-color: blue;
+      margin: 20px auto;
+      transition: transform 0.2s ease, background-color 0.2s ease; }
+      
+    .output {
+      font-size: 20px;
+      margin-top: 20px;
+      color: #333; }
+  </style>
 </head>
-
 <body>
-    <h1>onKeyDown and onKeyUp</h1>
-    <p><i>Press arrow keys to move the box and to change its color.</i></p>
+  <h1>onKeyDown and onKeyUp</h1>
+  <p><i>Press arrow keys to move the box and to change its color.</p></i>
+  <div class="box" id="box"></div>
+  <div class="output" id="output">Press a key to get started...</div>
+    
+  <script>
+     const box = document.getElementById('box');
+     const outputDiv = document.getElementById('output');
+     let x = 0;
+     let y = 0;
+      
+     function changeColor {
+       const ramdonColor = `#${Math.floor(math.random() * 16777215 .toString(16)}`;
+       box.style.backgroundColor = randomColor;
+     }
 
-    <div class="box" id="box"></div>
-    <div class="output" id="output">Press a key to get started...</div>
+     // Function to handle onkeydown event
+     document.addEventListener('keydown',(event) => {
+         const key = event.key;
+         if (key === 'ArrowUp') {
+             y -= 10;
+         } else if (key === 'Arrowdown') {
+             y += 10;
+         } else if (key === 'ArrowLeft') {
+             y -=10;
+         } else if (key === 'ArrowRight') {
+             y +=10; 
+         }
+         changeColor(); // Change color when a key is pressed
+         box.style.transform = `translate(${x}px, ${y}px)';
+         outputDiv.innerHTML = `key pressed: <span class="key">${key}</span>`;
+         outputDiv.style.color = 'green';
+      });
 
-    <script>
-        const box = document.getElementById('box');
-        const outputDiv = document.getElementById('output');
-
-        let x = 0;
-        let y = 0;
-
-        function changeColor() {
-            const randomColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
-            box.style.backgroundColor = randomColor;
-        }
-
-        // Function to handle onkeydown event
-        document.addEventListener('keydown', (event) => {
-            const key = event.key;
-
-            if (key === 'ArrowUp') {
-                y -= 10;
-            } else if (key === 'ArrowDown') {
-                y += 10;
-            } else if (key === 'ArrowLeft') {
-                x -= 10;
-            } else if (key === 'ArrowRight') {
-                x += 10;
-            }
-
-            changeColor(); // Change color when a key is pressed
-            box.style.transform = `translate(${x}px, ${y}px)`;
-            outputDiv.innerHTML = `Key pressed: <span class="key">${key}</span>`;
-            outputDiv.style.color = 'green';
-        });
-
-        document.addEventListener('keyup', (event) => {
-            const key = event.key;
-            outputDiv.innerHTML = `Key released: <span class="key">${key}</span>`;
-            outputDiv.style.color = 'red';
-        });
-    </script>
+      document.addEventListener('keyup',(event) => {
+          const key = event.key;
+          outputDiv.innerHTML = `key released: <span class="key">${key}</span>`;
+          outputDiv.style.color = 'red';
+      });
+  </script>
+</body>
+</html>
+    
+      
+        
+    
+      
+    </>
 </body>
 </html>
