@@ -35,7 +35,46 @@
 
     <script>
         const box = document.getElementById('box');
-     
+        const outputDiv = document.getElementById('output');
+
+        let x = 0;
+        let y = 0;
+
+        function changeColor() {
+            const randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
+            box.style.backgroundColor = randomColor;
+        }
+
+        document.addEventListener('keydown', (event) => {
+            const key = event.key;
+
+            if (key === 'ArrowUp') {
+                y -= 10;
+            } else if (key === 'ArrowDown') {
+                y += 10;
+            } else if (key === 'ArrowLeft') {
+                x -= 10;
+            } else if (key === 'ArrowRight') {
+                x += 10;
+            }
+
+            changeColor(); // Change color when a key is pressed
+            box.style.transform = `translate(${x}px, ${y}px)`;
+
+            outputDiv.innerHTML = `Key pressed: <span class="key">${key}</span>`;
+            outputDiv.style.color = 'green';
+        });
+
+        document.addEventListener('keyup', (event) => {
+            const key = event.key;
+
+            outputDiv.innerHTML = `Key released: <span class="key">${key}</span>`;
+            outputDiv.style.color = 'red';
+        });
+    </script>
+
+</body>
+</html>
       
         
     
